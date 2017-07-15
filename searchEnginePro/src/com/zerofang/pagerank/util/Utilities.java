@@ -20,7 +20,7 @@ public class Utilities {
 	final static char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7',
 			'8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-	// 加�?字符串产�?
+	// 加�?字符串产�?
 	private static final char CODES[] = {
 	/* 大写字母0~25 */
 	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -34,12 +34,13 @@ public class Utilities {
 			'!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-',
 			'.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^',
 			'_', '`', '{', '|', '}', '~', '' };
-	
+
 	// 随机数生成器
 	private static final Random RANDOM = new Random();
-	
+
 	/**
 	 * Compare two object safely
+	 * 
 	 * @param lhs
 	 * @param rhs
 	 * @return
@@ -50,7 +51,7 @@ public class Utilities {
 		}
 		return lhs.equals(rhs);
 	}
-	
+
 	/**
 	 * Generate where statement in sql from given constrains. You can just
 	 * append the return value to your sql statements.
@@ -92,7 +93,7 @@ public class Utilities {
 		sb.append(" ");
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Return the first element in the iterable container.
 	 * 
@@ -108,10 +109,10 @@ public class Utilities {
 		}
 		return one;
 	}
-	
+
 	/**
 	 * Generate Codes: to generate random string include up or low case and
-	 * number for given length. 本方法�?用于生成指定大小的随机字符串，含大小写字符以及数�?
+	 * number for given length. 本方法�?用于生成指定大小的随机字符串，含大小写字符以及数�?
 	 * 
 	 * @param length
 	 *            the length you want
@@ -128,13 +129,12 @@ public class Utilities {
 	/**
 	 * Generate salt: you know that 深成岩，用于加密
 	 * 
-	 * @return �?
+	 * @return �?
 	 */
 	public static String generateSalt() {
 		return Utilities.generateCodes(16);
 	}
 
-	
 	/**
 	 * Parse id from string. <br>
 	 * Use this method for unsigned id parsing.
@@ -206,36 +206,37 @@ public class Utilities {
 			str = generateMd5sum(str + salt);
 		return str;
 	}
-	
-	public static String dateToString(Date date)
-	{
+
+	public static String dateToString(Date date) {
 		String formatDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 		return formatDate;
 	}
-	
-	public static Date StringToDate(String string) throws ParseException
-	{
+
+	public static Date StringToDate(String string) throws ParseException {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		return format.parse(string);
 	}
-	public static String dateTimeToString(Date date){
-		String formatDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+
+	public static String dateTimeToString(Date date) {
+		String formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+				.format(date);
 		return formatDate;
 	}
-	
-	public static Date StringToDateTime(String string) throws ParseException
-	{
+
+	public static Date StringToDateTime(String string) throws ParseException {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return format.parse(string);
 	}
-	public static boolean match(String inputString,String regex) throws IOException{
+
+	public static boolean match(String inputString, String regex)
+			throws IOException {
 		boolean result = false;
 		Pattern pattern = Pattern.compile(regex);
-    	Matcher matcher = pattern.matcher(inputString);
-    	if (matcher.find()){
-    		//System.out.println(matcher.group());
-    		return true;
-    	}
+		Matcher matcher = pattern.matcher(inputString);
+		if (matcher.find()) {
+			// System.out.println(matcher.group());
+			return true;
+		}
 		return result;
 	}
 }

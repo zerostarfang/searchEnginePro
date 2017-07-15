@@ -7,44 +7,45 @@ import java.util.Map;
 
 public class Shingling {
 	/*
-	 * ÅÐ¶ÏhashCodeAÓëhashCodeBµÄÏàËÆ¶ÈÊÇ·ñ³¬¹ý¸ø¶¨ãÐÖµthreshold
+	 * ï¿½Ð¶ï¿½hashCodeAï¿½ï¿½hashCodeBï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ç·ñ³¬¹ï¿½ï¿½ï¿½ï¿½Öµthreshold
 	 */
-	public static boolean isSimilar(String strA,String strB, int gramNum, int N, int threshold){
+	public static boolean isSimilar(String strA, String strB, int gramNum,
+			int N, int threshold) {
 		//
-		List<String> nGramListA=getNGramList(strA, N);
-		List<String> nGramListB=getNGramList(strB, N);
-		double jaccardIndex=DistanceFuncs.jaccardIndex(nGramListA, nGramListB);
-		if(jaccardIndex<threshold){
+		List<String> nGramListA = getNGramList(strA, N);
+		List<String> nGramListB = getNGramList(strB, N);
+		double jaccardIndex = DistanceFuncs
+				.jaccardIndex(nGramListA, nGramListB);
+		if (jaccardIndex < threshold) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
+
 	/*
-	 * »ñÈ¡ÊäÈë×Ö·û´®inputStringµÄN-Gram×Ö·û´®ÁÐ±í
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½inputStringï¿½ï¿½N-Gramï¿½Ö·ï¿½ï¿½Ð±ï¿½
 	 */
-	public static List<String> getNGramList(String inputString, int N){
-		List<String> nGramList=new ArrayList<String>();
-		for(int i=0;i<inputString.length()-N+1;i++){
-			nGramList.add(inputString.substring(i, i+N));
+	public static List<String> getNGramList(String inputString, int N) {
+		List<String> nGramList = new ArrayList<String>();
+		for (int i = 0; i < inputString.length() - N + 1; i++) {
+			nGramList.add(inputString.substring(i, i + N));
 		}
 		return nGramList;
 	}
-	
+
 	/*
-	 * ¼ÆËãsentence×Ö·û´®ÖÐN-gramµÄ´ÊÏîÊý¼°¸÷´ÊÏîµÄÈ¨ÖØ
+	 * ï¿½ï¿½ï¿½ï¿½sentenceï¿½Ö·ï¿½ï¿½ï¿½N-gramï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½
 	 */
-	public static Map<String, Integer> getTokenAndWeight(String sentence, int N){
-		List<String> nGramList=getNGramList(sentence, N);
-		Map<String, Integer> resultMap=new HashMap<String, Integer>();
-		for(int i=0;i<nGramList.size();i++){
-			String key=nGramList.get(i);
-			if(!resultMap.containsKey(key)){
+	public static Map<String, Integer> getTokenAndWeight(String sentence, int N) {
+		List<String> nGramList = getNGramList(sentence, N);
+		Map<String, Integer> resultMap = new HashMap<String, Integer>();
+		for (int i = 0; i < nGramList.size(); i++) {
+			String key = nGramList.get(i);
+			if (!resultMap.containsKey(key)) {
 				resultMap.put(key, 1);
-			}
-			else{
-				resultMap.put(key, resultMap.get(key)+1);
+			} else {
+				resultMap.put(key, resultMap.get(key) + 1);
 			}
 		}
 		return resultMap;

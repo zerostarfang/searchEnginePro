@@ -39,25 +39,26 @@ public class Test {
 	static ResultSet ret = null;
 
 	public static void main(String[] args) throws IOException {
-		// sql²âÊÔ
+		// sqlï¿½ï¿½ï¿½ï¿½
 		/*
-		 * sql = "select *from url";//SQLÓï¾ä db1 = new
-		 * DBHelper(sql);//´´½¨DBHelper¶ÔÏó
+		 * sql = "select *from url";//SQLï¿½ï¿½ï¿½ db1 = new
+		 * DBHelper(sql);//ï¿½ï¿½ï¿½ï¿½DBHelperï¿½ï¿½ï¿½ï¿½
 		 * 
-		 * try { ret = db1.pst.executeQuery();//Ö´ÐÐÓï¾ä£¬µÃµ½½á¹û¼¯ while (ret.next()) {
-		 * String uid = ret.getString(1); String ufname = ret.getString(2);
+		 * try { ret = db1.pst.executeQuery();//Ö´ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½Ãµï¿½ï¿½ï¿½ï¿½ while (ret.next())
+		 * { String uid = ret.getString(1); String ufname = ret.getString(2);
 		 * String ulname = ret.getString(3); System.out.println(uid + "\t" +
-		 * ufname + "\t" + ulname ); }//ÏÔÊ¾Êý¾Ý ret.close(); db1.close();//¹Ø±ÕÁ¬½Ó }
-		 * catch (SQLException e) { e.printStackTrace(); }
+		 * ufname + "\t" + ulname ); }//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ ret.close();
+		 * db1.close();//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ } catch (SQLException e) { e.printStackTrace();
+		 * }
 		 */
-		// Ð´ÈëÊý¾Ý¿â²âÊÔ
+		// Ð´ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½
 		// File file = new File("test-text.txt");
 		// System.out.println(file.toString());
 		// HashMap<KeyPair,String> test = new HashMap();
 		// test.put(new KeyPair(1,2),"test");
 		// System.out.println(test.get(new KeyPair(1,2)));
 		// WordDAOImpl wordDao = new WordDAOImpl();
-		// Word value = new Word(2,"ÎÒÊÇ");
+		// Word value = new Word(2,"ï¿½ï¿½ï¿½ï¿½");
 		// wordDao.add(value);
 		// UrlDAOImpl urlDao = new UrlDAOImpl();
 		// Url url = new Url(2,"tt");
@@ -66,84 +67,68 @@ public class Test {
 		// urlDao.add(url);
 		// String test = "title:5.txt";
 		// System.out.println(test.substring(6));
-		// ÕýÔòÆ¥Åä²âÊÔ
+		// ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½
 		// String[] dataArr = { "moon", "mon", "moon", "mono" };
 		// for (String str : dataArr) {
 		// String patternStr="m(o+)n";
 		// boolean result = Pattern.matches(patternStr, str);
 		// if (result) {
-		// System.out.println("×Ö·û´®"+str+"Æ¥ÅäÄ£Ê½"+patternStr+"³É¹¦");
+		// System.out.println("ï¿½Ö·ï¿½"+str+"Æ¥ï¿½ï¿½Ä£Ê½"+patternStr+"ï¿½É¹ï¿½");
 		// }
 		// else{
-		// System.out.println("×Ö·û´®"+str+"Æ¥ÅäÄ£Ê½"+patternStr+"Ê§°Ü");
+		// System.out.println("ï¿½Ö·ï¿½"+str+"Æ¥ï¿½ï¿½Ä£Ê½"+patternStr+"Ê§ï¿½ï¿½");
 		// }
 		// }
-		// url·ÖÎö
-		/*Pattern pattern = Pattern.compile("(http://|https://){1}([\\w\\.]+)");
-		BufferedReader in = new BufferedReader(new FileReader("result_URL.txt"));
-		PrintWriter pw = new PrintWriter(new FileWriter("url_analysis.txt"));
-		Set<String> words = new     TreeSet<>();
-		String s;
-		// »ñµÃËùÓÐµÄurlÖÐÇ°Ãæ°ë½ØµÄ´Ê²¢±£´æ
-		Set<String> urls = new TreeSet<>();
-		while ((s = in.readLine()) != null) {
-			String[] t = s.split("\\s");
-			Matcher matcher = pattern.matcher(t[1]);
-			if (matcher.find()) {
-				 System.out.println(matcher.group(2));
-				String ut = matcher.group(2);
-				urls.add(ut);
-				String[] temp = ut.split("\\.");
-				for (String te : temp) {
-					//System.out.println(te);
-					words.add(te);
-				}
-			}
-		}*/
-		/*System.out.println(in.readLine());
-		System.out.println("size =" + words.size());
-		pw.println("size= "+words.size());
-		Iterator<String> iwords = words.iterator();
-		while (iwords.hasNext()) {
-			Iterator<String> iurl = urls.iterator();
-			String wo = iwords.next();
-			pw.println(wo);
-			System.out.println(wo);
-			while(iurl.hasNext()){
-				String t = iurl.next();
-				if(t.contains(wo)){
-					System.out.println(t);
-					pw.println(t);
-				}
-			}
-		}
-		pw.close();
-		// ½âÎö³öUrlµÄÕýÔò±í´ïÊ½*/
-		
-		 //Pattern pattern =
-//		 Pattern.compile("(http://|https://){1}[\\w\\.\\-/:]+"); 
-//		 Pattern pattern = Pattern.compile("(http://|https://){1}([\\w\\.]+)");
-//		 Matcher matcher =
-//		 pattern.matcher("http://games.qq.com/a/20160218/000658.htm");
-//		 StringBuffer buffer = new StringBuffer(); while(matcher.find()){
-//		 buffer.append(matcher.group(2)); buffer.append("\r\n");
-//		 System.out.println(buffer.toString()); }
-		 
-		/*String[] tests;
-		String[] newtest = {"23","34"};
-		//test = newtest;
-		//System.out.println(test[0]+test[1]);
-		String test = "news:dtsdtsd t  ";
-		String[] keywords = test.substring(5).split("\\s");
-		tests = keywords;
-		System.out.println(tests[0]+tests[1]);*/
-//		boolean result = Pattern.matches("astro","http://astro.fashion.qq.com/a/20160220/009084.htm");
-//		String test = " test  tests  testes";
-//		String[] s = test.trim().split("\\s+");
-//		System.out.println(s.length);
-		IKAnalysis("´Êµä");
-		
+		// urlï¿½ï¿½ï¿½ï¿½
+		/*
+		 * Pattern pattern =
+		 * Pattern.compile("(http://|https://){1}([\\w\\.]+)"); BufferedReader
+		 * in = new BufferedReader(new FileReader("result_URL.txt"));
+		 * PrintWriter pw = new PrintWriter(new FileWriter("url_analysis.txt"));
+		 * Set<String> words = new TreeSet<>(); String s; //
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½urlï¿½ï¿½Ç°ï¿½ï¿½ï¿½ØµÄ´Ê²ï¿½ï¿½ï¿½ï¿½ï¿½ Set<String> urls = new TreeSet<>(); while
+		 * ((s = in.readLine()) != null) { String[] t = s.split("\\s"); Matcher
+		 * matcher = pattern.matcher(t[1]); if (matcher.find()) {
+		 * System.out.println(matcher.group(2)); String ut = matcher.group(2);
+		 * urls.add(ut); String[] temp = ut.split("\\."); for (String te : temp)
+		 * { //System.out.println(te); words.add(te); } } }
+		 */
+		/*
+		 * System.out.println(in.readLine()); System.out.println("size =" +
+		 * words.size()); pw.println("size= "+words.size()); Iterator<String>
+		 * iwords = words.iterator(); while (iwords.hasNext()) {
+		 * Iterator<String> iurl = urls.iterator(); String wo = iwords.next();
+		 * pw.println(wo); System.out.println(wo); while(iurl.hasNext()){ String
+		 * t = iurl.next(); if(t.contains(wo)){ System.out.println(t);
+		 * pw.println(t); } } } pw.close(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Urlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+		 */
+
+		// Pattern pattern =
+		// Pattern.compile("(http://|https://){1}[\\w\\.\\-/:]+");
+		// Pattern pattern =
+		// Pattern.compile("(http://|https://){1}([\\w\\.]+)");
+		// Matcher matcher =
+		// pattern.matcher("http://games.qq.com/a/20160218/000658.htm");
+		// StringBuffer buffer = new StringBuffer(); while(matcher.find()){
+		// buffer.append(matcher.group(2)); buffer.append("\r\n");
+		// System.out.println(buffer.toString()); }
+
+		/*
+		 * String[] tests; String[] newtest = {"23","34"}; //test = newtest;
+		 * //System.out.println(test[0]+test[1]); String test =
+		 * "news:dtsdtsd t  "; String[] keywords =
+		 * test.substring(5).split("\\s"); tests = keywords;
+		 * System.out.println(tests[0]+tests[1]);
+		 */
+		// boolean result =
+		// Pattern.matches("astro","http://astro.fashion.qq.com/a/20160220/009084.htm");
+		// String test = " test  tests  testes";
+		// String[] s = test.trim().split("\\s+");
+		// System.out.println(s.length);
+		IKAnalysis("ï¿½Êµï¿½");
+
 	}
+
 	public static String IKAnalysis(String str) {
 		StringBuffer sb = new StringBuffer();
 		try {

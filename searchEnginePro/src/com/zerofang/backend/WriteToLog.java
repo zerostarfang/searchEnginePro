@@ -1,43 +1,50 @@
-package com.app.backend.utils;
+package com.zerofang.backend;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 
+import com.app.backend.utils.PrefixSpan;
+import com.app.backend.utils.Word;
+
 public class WriteToLog {
-	
+
 	public static void main(String[] args) throws IOException {
-		if(args.length < 2){
+		if (args.length < 2) {
 			System.out.println("invalid input");
-		}
-		else {
+		} else {
 			String[] words = args[1].split("\\|");
 			List<String> wlist = new ArrayList();
 			for (String x : words) {
 				if (x.length() > 0) {
-					wlist.add(x);	
+					wlist.add(x);
 				}
 			}
 			WriteToLog(args[0], wlist);
 		}
-		//List<String> test1 = new ArrayList<String>() {{ add("a"); add("c");	add("d"); }};
-		//WriteToLog("acd", test1);
+		// List<String> test1 = new ArrayList<String>() {{ add("a"); add("c");
+		// add("d"); }};
+		// WriteToLog("acd", test1);
 	}
-	
+
 	// return history items most associated with input words
 	// result is delimited by "|"
 	// instr represents the entire input string typed by the user
-	// words is a list of strings which represents the segmentation result of instr
-	public static void WriteToLog(String instr, List<String> words) throws IOException{
+	// words is a list of strings which represents the segmentation result of
+	// instr
+	public static void WriteToLog(String instr, List<String> words)
+			throws IOException {
 		// history log document : "history.txt"
 		// word frequency document : "frequency.txt"
-		
+
 		// write to history
-		BufferedWriter output = new BufferedWriter(new FileWriter("history.txt", true));
+		BufferedWriter output = new BufferedWriter(new FileWriter(
+				"history.txt", true));
 		// "ssssss#xx|xx|xx@yyyy/MM/dd HH:mm:ss\n"
 		// get current time
 		Date d = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"yyyy/MM/dd HH:mm:ss");
 		String now = dateFormat.format(d);
 		String buff = "";
 		buff += instr + "#";
@@ -48,9 +55,10 @@ public class WriteToLog {
 		output.write(buff);
 		output.newLine();
 		output.close();
-		
+
 		// update word frequency list
-		BufferedReader input = new BufferedReader(new FileReader("frequency.txt"));
+		BufferedReader input = new BufferedReader(new FileReader(
+				"frequency.txt"));
 		List<Word> wlist = new ArrayList();
 		wlist.clear();
 		buff = input.readLine();
@@ -86,7 +94,7 @@ public class WriteToLog {
 			output.newLine();
 		}
 		output.close();
-		
+
 		// construct transaction database
 		input = new BufferedReader(new FileReader("history.txt"));
 		output = new BufferedWriter(new FileWriter("transaction.txt"));
@@ -113,7 +121,7 @@ public class WriteToLog {
 		}
 		input.close();
 		output.close();
-		
+
 		// prefix span recommendation
 		int min_sup = 1;
 		int max_pat = 0;

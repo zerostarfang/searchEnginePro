@@ -6,5 +6,24 @@
 	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/hotitems.jar"/>
 	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jsoup-1.8.3.jar"/>
 	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/writetolog.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/colt-1.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/concurrent-1.3.4.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/j3d-core-1.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-3d-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-3d-demos-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-algorithms-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-graph-impl-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-jai-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-jai-samples-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-samples-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/jung-visualization-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/vecmath-1.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/wstx-asl-3.2.6.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/lucene-core-6.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/myeclipseworkspace/searchEnginePro/IKAnalyzer2012_u6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

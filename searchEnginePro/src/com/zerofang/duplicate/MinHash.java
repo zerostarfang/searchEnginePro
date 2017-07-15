@@ -5,86 +5,87 @@ import java.util.List;
 
 public class MinHash {
 	/*
-	 * 判断hashCodeA与hashCodeB的相似度是否超过给定阈值threshold
-	 * MinHash算法选择集合中K个hash值最小的元素
+	 * 锟叫讹拷hashCodeA锟斤拷hashCodeB锟斤拷锟斤拷锟狡讹拷锟角否超癸拷锟斤拷锟街祎hreshold
+	 * MinHash锟姐法选锟今集猴拷锟斤拷K锟斤拷hash值锟斤拷小锟斤拷元锟斤拷
 	 */
-	public static boolean isSimilar(List<String> strListA,List<String> strListB, int K, int threshold){
+	public static boolean isSimilar(List<String> strListA,
+			List<String> strListB, int K, int threshold) {
 		/*
-		 * 如果size(A)<K或size(B)<K，则用min(size(A), size(B))作为K的实际值
+		 * 锟斤拷锟絪ize(A)<K锟斤拷size(B)<K锟斤拷锟斤拷锟斤拷min(size(A), size(B))锟斤拷为K锟斤拷实锟斤拷值
 		 */
-		if(strListA.size()<K || strListB.size()<K){
-			K=Math.min(strListA.size(), strListB.size());
+		if (strListA.size() < K || strListB.size() < K) {
+			K = Math.min(strListA.size(), strListB.size());
 		}
 		/*
-		 * 计算A和B中所有元素的哈希值
+		 * 锟斤拷锟斤拷A锟斤拷B锟斤拷锟斤拷锟斤拷元锟截的癸拷希值
 		 */
-		List<Integer> hashA=getHashCodeList(strListA);
-		List<Integer> hashB=getHashCodeList(strListB);
-		
+		List<Integer> hashA = getHashCodeList(strListA);
+		List<Integer> hashB = getHashCodeList(strListB);
+
 		/*
-		 * 分别找出A和B中最小的K个hash值
+		 * 锟街憋拷锟揭筹拷A锟斤拷B锟斤拷锟斤拷小锟斤拷K锟斤拷hash值
 		 */
-		//从hashA和hashB中选择最小的K个元素
-		List<Integer> minHashA=getMinKElement(hashA, K);
-		List<Integer> minHashB=getMinKElement(hashB, K);
-		double jaccardIndex=DistanceFuncs.jaccardIndex(minHashA, minHashB);
-		if(jaccardIndex>threshold){
+		// 锟斤拷hashA锟斤拷hashB锟斤拷选锟斤拷锟斤拷小锟斤拷K锟斤拷元锟斤拷
+		List<Integer> minHashA = getMinKElement(hashA, K);
+		List<Integer> minHashB = getMinKElement(hashB, K);
+		double jaccardIndex = DistanceFuncs.jaccardIndex(minHashA, minHashB);
+		if (jaccardIndex > threshold) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
+
 	/*
-	 * 获取strList中所有string的hash值
+	 * 锟斤拷取strList锟斤拷锟斤拷锟斤拷string锟斤拷hash值
 	 */
-	private static List<Integer> getHashCodeList(List<String> strList){
-		List<Integer> hashInt=new ArrayList<Integer>();
-		HashFunctionLib hfl=new HashFunctionLib();
-		for(int i=0;i<strList.size();i++){
-			//选用了Java自带的hash函数
+	private static List<Integer> getHashCodeList(List<String> strList) {
+		List<Integer> hashInt = new ArrayList<Integer>();
+		HashFunctionLib hfl = new HashFunctionLib();
+		for (int i = 0; i < strList.size(); i++) {
+			// 选锟斤拷锟斤拷Java锟皆达拷锟絟ash锟斤拷锟斤拷
 			hashInt.add(hfl.JavaHash(strList.get(i)));
 		}
 		return hashInt;
 	}
-	
+
 	/*
-	 * 从intList中找到最小的K个值
+	 * 锟斤拷intList锟斤拷锟揭碉拷锟斤拷小锟斤拷K锟斤拷值
 	 */
-	private static List<Integer> getMinKElement(List<Integer> intList, int K){
-		if(intList.size()==K){
+	private static List<Integer> getMinKElement(List<Integer> intList, int K) {
+		if (intList.size() == K) {
 			return intList;
 		}
 		/*
-		 * 初始化
+		 * 锟斤拷始锟斤拷
 		 */
-		List<Integer> minKElement=new ArrayList<Integer>();
-		//获取前K个元素作为初始值
-		Integer intTmp, maxVal=-1;
-		int i=0, maxIndex=0;
-		for(i=0;i<K;i++){
-			intTmp=intList.get(i);
+		List<Integer> minKElement = new ArrayList<Integer>();
+		// 锟斤拷取前K锟斤拷元锟斤拷锟斤拷为锟斤拷始值
+		Integer intTmp, maxVal = -1;
+		int i = 0, maxIndex = 0;
+		for (i = 0; i < K; i++) {
+			intTmp = intList.get(i);
 			minKElement.add(intTmp);
-			if(intList.get(i)>intTmp){
-				maxVal=intTmp;
-				maxIndex=i;
+			if (intList.get(i) > intTmp) {
+				maxVal = intTmp;
+				maxIndex = i;
 			}
 		}
 		/*
-		 * 遍历剩下的intList.size()-K个元素
+		 * 锟斤拷锟斤拷剩锟铰碉拷intList.size()-K锟斤拷元锟斤拷
 		 */
-		int intTmp2, j=0;
-		for(i=K;i<intList.size();i++){
-			intTmp=intList.get(i);
-			if(intTmp<maxVal){
+		int intTmp2, j = 0;
+		for (i = K; i < intList.size(); i++) {
+			intTmp = intList.get(i);
+			if (intTmp < maxVal) {
 				minKElement.set(maxIndex, intTmp);
 			}
-			//找到K个最小哈希值中最大的一个及其索引
-			for(j=0;j<minKElement.size();j++){
-				intTmp2=minKElement.get(j);
-				if(intTmp2>intTmp){
-					maxVal=intTmp2;
-					maxIndex=j;
+			// 锟揭碉拷K锟斤拷锟斤拷小锟斤拷希值锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+			for (j = 0; j < minKElement.size(); j++) {
+				intTmp2 = minKElement.get(j);
+				if (intTmp2 > intTmp) {
+					maxVal = intTmp2;
+					maxIndex = j;
 				}
 			}
 		}

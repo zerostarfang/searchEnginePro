@@ -1,35 +1,35 @@
 package com.zerofang.pagerank.util;
 
-import java.sql.Connection;  
-import java.sql.DriverManager;  
-import java.sql.PreparedStatement;  
-import java.sql.SQLException;  
-  
-public class DBHelper {  
-    public static final String url = "jdbc:mysql://127.0.0.1/wordsplit";  
-    public static final String name = "com.mysql.jdbc.Driver";  
-    public static final String user = "root";  
-    public static final String password = "xjtu";  
-  
-    public Connection conn = null;  
-    public PreparedStatement pst = null;  
-  
-    public DBHelper(String sql) {  
-        try {  
-            Class.forName(name);//Ö¸¶¨Á¬½ÓÀàÐÍ  
-            conn = DriverManager.getConnection(url, user, password);//»ñÈ¡Á¬½Ó  
-            pst = conn.prepareStatement(sql);//×¼±¸Ö´ÐÐÓï¾ä  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-    }  
-  
-    public void close() {  
-        try {  
-            this.conn.close();  
-            this.pst.close();  
-        } catch (SQLException e) {  
-            e.printStackTrace();  
-        }  
-    }  
-}  
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DBHelper {
+	public static final String url = "jdbc:mysql://127.0.0.1/wordsplit";
+	public static final String name = "com.mysql.jdbc.Driver";
+	public static final String user = "root";
+	public static final String password = "xjtu";
+
+	public Connection conn = null;
+	public PreparedStatement pst = null;
+
+	public DBHelper(String sql) {
+		try {
+			Class.forName(name);// Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			conn = DriverManager.getConnection(url, user, password);// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+			pst = conn.prepareStatement(sql);// ×¼ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void close() {
+		try {
+			this.conn.close();
+			this.pst.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

@@ -25,8 +25,8 @@ public class WordDAOImpl implements IWordDAO {
 
 	private void setPS(PreparedStatement ps, Word t) throws SQLException {
 		ps.setInt(1, t.getUrlID());
-		//ps.setInt(2, t.getTimesInUrl());
-		//ps.setInt(3, t.getPosition());
+		// ps.setInt(2, t.getTimesInUrl());
+		// ps.setInt(3, t.getPosition());
 		ps.setString(2, t.getValue());
 	}
 
@@ -119,7 +119,7 @@ public class WordDAOImpl implements IWordDAO {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		//HashSet<Scene> result = new HashSet<Scene>();
+		// HashSet<Scene> result = new HashSet<Scene>();
 		List<Word> result = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from " + TABLE_NAME + " ");
@@ -137,8 +137,8 @@ public class WordDAOImpl implements IWordDAO {
 
 				word.setID(rs.getInt("word_id"));
 				word.setUrlID(rs.getInt("url_id"));
-				//word.setTimesInUrl(rs.getInt("times_in_url"));
-				//word.setPosition(rs.getInt("position_in_url"));
+				// word.setTimesInUrl(rs.getInt("times_in_url"));
+				// word.setPosition(rs.getInt("position_in_url"));
 				word.setValue(rs.getString("word_value"));
 				result.add(word);
 			}

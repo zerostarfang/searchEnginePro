@@ -6,36 +6,38 @@ import java.util.Set;
 
 public class DistanceFuncs {
 	/*
-	 * ¼ÆËãÁ½¸ö¶þ½øÖÆ×Ö·û´®µÄº£Ã÷¾àÀë
-	 * @param binStrA ³¤¶ÈÎªNµÄ¶þ½øÖÆ×Ö·û´®A
-	 * @param binStrB ³¤¶ÈÎªNµÄ¶þ½øÖÆ×Ö·û´®B
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * 
+	 * @param binStrA ï¿½ï¿½ï¿½ï¿½ÎªNï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½A
+	 * 
+	 * @param binStrB ï¿½ï¿½ï¿½ï¿½ÎªNï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½B
 	 */
-	public static int hammingDist(String binStrA, String binStrB){
-		int hammingDist=-1;
-		if(binStrA.length()==binStrB.length()){
-			hammingDist=0;
-			for(int i=0;i<binStrA.length();i++){
-				if(binStrA.charAt(i)!=binStrB.charAt(i)){
-					hammingDist=hammingDist+1;
+	public static int hammingDist(String binStrA, String binStrB) {
+		int hammingDist = -1;
+		if (binStrA.length() == binStrB.length()) {
+			hammingDist = 0;
+			for (int i = 0; i < binStrA.length(); i++) {
+				if (binStrA.charAt(i) != binStrB.charAt(i)) {
+					hammingDist = hammingDist + 1;
 				}
 			}
 		}
 		return hammingDist;
 	}
-	
+
 	/*
-	 * A¡¢B:´ý¼ÆËãjaccardÏµÊýµÄÁ½¸öInteger¼¯ºÏ
-	 * K:ÓÃÓÚ¼ÆËãjaccardÏµÊýµÄ¹þÏ£Öµ×îÐ¡µÄK¸öÔªËØ
-	 * Èç¹ûsize(A)<K»òsize(B)<K£¬ÔòÓÃmin(size(A), size(B))×÷ÎªKµÄÊµ¼ÊÖµ
+	 * Aï¿½ï¿½B:ï¿½ï¿½ï¿½ï¿½ï¿½jaccardÏµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Integerï¿½ï¿½ï¿½ï¿½ K:ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½jaccardÏµï¿½ï¿½Ä¹ï¿½Ï£Öµï¿½ï¿½Ð¡ï¿½ï¿½Kï¿½ï¿½Ôªï¿½ï¿½
+	 * ï¿½ï¿½ï¿½size(A)<Kï¿½ï¿½size(B)<Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½min(size(A), size(B))ï¿½ï¿½ÎªKï¿½ï¿½Êµï¿½ï¿½Öµ
 	 */
-	public static double jaccardIndex(List<?> minHashA, List<?> minHashB){
+	public static double jaccardIndex(List<?> minHashA, List<?> minHashB) {
 		/*
-		 * ¼ÆËãJaccardÏµÊý
+		 * ï¿½ï¿½ï¿½ï¿½JaccardÏµï¿½ï¿½
 		 */
-		Set<Object> mergedSet=new HashSet<Object>();
+		Set<Object> mergedSet = new HashSet<Object>();
 		mergedSet.addAll(minHashA);
 		mergedSet.addAll(minHashB);
-		double jaccardIndex=(double)(minHashA.size()+minHashB.size()-mergedSet.size())/(double)mergedSet.size();
+		double jaccardIndex = (double) (minHashA.size() + minHashB.size() - mergedSet
+				.size()) / (double) mergedSet.size();
 		return jaccardIndex;
 	}
 }

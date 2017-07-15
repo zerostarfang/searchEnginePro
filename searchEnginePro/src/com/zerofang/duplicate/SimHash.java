@@ -5,74 +5,72 @@ import java.util.Set;
 
 public class SimHash {
 	/*
-	 * ÅÐ¶ÏhashCodeAÓëhashCodeBµÄÏàËÆ¶ÈÊÇ·ñ³¬¹ý¸ø¶¨ãÐÖµthreshold
+	 * ï¿½Ð¶ï¿½hashCodeAï¿½ï¿½hashCodeBï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ç·ñ³¬¹ï¿½ï¿½ï¿½ï¿½Öµthreshold
 	 */
-	public static boolean isSimilar(String hashCodeA,String hashCodeB, int threshold){
+	public static boolean isSimilar(String hashCodeA, String hashCodeB,
+			int threshold) {
 		//
-		int hammingDist=DistanceFuncs.hammingDist(hashCodeA, hashCodeB);
-		if(hammingDist<threshold){
+		int hammingDist = DistanceFuncs.hammingDist(hashCodeA, hashCodeB);
+		if (hammingDist < threshold) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
+
 	/*
-	 * ¸ù¾ÝÊäÈëµÄÌØÕ÷ÏòÁ¿¼°ÆäÈ¨ÖØ¡¢Ç©ÃûÎ»Êý£¬¼ÆËãsimhash
-	 * signNum<32£¬·ñÔòÎÞ·¨Ö§³Ö
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½Ø¡ï¿½Ç©ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½simhash signNum<32ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½Ö§ï¿½ï¿½
 	 */
-	public static String calcSimHash(Map<String, Integer> vec_wei,int signNum){
+	public static String calcSimHash(Map<String, Integer> vec_wei, int signNum) {
 		/*
-		 * ³õÊ¼»¯
+		 * ï¿½ï¿½Ê¼ï¿½ï¿½
 		 */
-		int[] v=new int[signNum];
-		int[] s=new int[signNum];
-		
+		int[] v = new int[signNum];
+		int[] s = new int[signNum];
+
 		/*
-		 * ±éÀúËùÓÐÌØÕ÷£¬¼ÆËãvÖµ
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vÖµ
 		 */
-		Set<String> keys=vec_wei.keySet();
-		int i=0;
+		Set<String> keys = vec_wei.keySet();
+		int i = 0;
 		int b_tmp;
-		for(String key:keys){
-			int value=vec_wei.get(key);
-			int b=calcHashCode(key);
-			for(i=0;i<signNum;i++){
-				//ÅÐ¶ÏbµÄ¶þ½øÖÆÎ»µÄ×îºóÒ»Î»ÊÇ0»¹ÊÇ1
-				b_tmp=b & Integer.MAX_VALUE;
-				if(b!=b_tmp){	//´ËÊ±bµÄ¶þ½øÖÆÎ»µÄ×îºóÒ»Î»ÊÇ1
-					v[i]=v[i]+value;
+		for (String key : keys) {
+			int value = vec_wei.get(key);
+			int b = calcHashCode(key);
+			for (i = 0; i < signNum; i++) {
+				// ï¿½Ð¶ï¿½bï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½1
+				b_tmp = b & Integer.MAX_VALUE;
+				if (b != b_tmp) { // ï¿½ï¿½Ê±bï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»ï¿½ï¿½1
+					v[i] = v[i] + value;
+				} else {
+					v[i] = v[i] - value;
 				}
-				else{
-					v[i]=v[i]-value;
-				}
-				b=b >> 1;
+				b = b >> 1;
 			}
 		}
-		
+
 		/*
-		 * ¸ù¾Ýv¼ÆËãsÖµ
-		 * 
+		 * ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½sÖµ
 		 */
-		StringBuilder builder=new StringBuilder();
-		for(i=0;i<signNum;i++){
-			if(v[i]>0){
-				s[i]=1;
-			}else{
-				s[i]=0;
+		StringBuilder builder = new StringBuilder();
+		for (i = 0; i < signNum; i++) {
+			if (v[i] > 0) {
+				s[i] = 1;
+			} else {
+				s[i] = 0;
 			}
 			builder.append(new Integer(s[i]).toString());
 		}
 		/*
-		 * Êä³ös×÷ÎªÇ©Ãû
+		 * ï¿½ï¿½ï¿½sï¿½ï¿½ÎªÇ©ï¿½ï¿½
 		 */
 		return builder.toString();
 	}
-	
+
 	/*
-	 * ¼ÆËãstrµÄhash code
+	 * ï¿½ï¿½ï¿½ï¿½strï¿½ï¿½hash code
 	 */
-	private static int calcHashCode(String str){
+	private static int calcHashCode(String str) {
 		return str.hashCode();
 	}
 }

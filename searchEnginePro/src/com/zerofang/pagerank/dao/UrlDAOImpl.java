@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.Set;
 
 import com.zerofang.pagerank.entity.Url;
+import com.zerofang.pagerank.entity.Word;
+import com.zerofang.pagerank.interfaces.IUrlDAO;
 import com.zerofang.pagerank.interfaces.IWordDAO;
 import com.zerofang.pagerank.util.JDBCUtil;
 import com.zerofang.pagerank.util.Utilities;
 
-
-public class UrlDAOImpl implements IWordDAO {
+public class UrlDAOImpl implements IUrlDAO {
 
 	private static String TABLE_NAME = "url";
 
@@ -28,7 +29,7 @@ public class UrlDAOImpl implements IWordDAO {
 		ps.setInt(1, t.getID());
 		ps.setString(2, t.getUrlName());
 		ps.setDouble(3, t.getPagerankValue());
-		ps.setString(4,t.getTitle());
+		ps.setString(4, t.getTitle());
 		ps.setString(5, t.getText());
 		ps.setString(6, t.getAuthor());
 		ps.setTimestamp(7, new java.sql.Timestamp(t.getDate().getTime()));
@@ -42,12 +43,13 @@ public class UrlDAOImpl implements IWordDAO {
 		try {
 			if (null == pstadd) {
 				conn = JDBCUtil.getConnection();
-				pstadd = conn.prepareStatement("insert into " + TABLE_NAME
-						+ "(url_id,url_name,pagerank_value) "
-						+ "values(?,?,?)");
+				pstadd = conn
+						.prepareStatement("insert into " + TABLE_NAME
+								+ "(url_id,url_name,pagerank_value) "
+								+ "values(?,?,?)");
 			}
 
-			//setPS(pstadd, t);
+			// setPS(pstadd, t);
 			pstadd.setInt(1, t.getID());
 			pstadd.setString(2, t.getUrlName());
 			pstadd.setDouble(3, t.getPagerankValue());
@@ -88,6 +90,7 @@ public class UrlDAOImpl implements IWordDAO {
 
 		return done;
 	}
+
 	public boolean updateContent(Url t) {
 		Connection conn = null;
 		boolean done = false;
@@ -100,11 +103,12 @@ public class UrlDAOImpl implements IWordDAO {
 						+ "where url_id=?");
 			}
 
-			//setPS(pstupdate, t);
+			// setPS(pstupdate, t);
 			pstupdate.setString(1, t.getTitle());
 			pstupdate.setString(2, t.getText());
 			pstupdate.setString(3, t.getAuthor());
-			pstupdate.setTimestamp(4, new java.sql.Timestamp(t.getDate().getTime()));
+			pstupdate.setTimestamp(4, new java.sql.Timestamp(t.getDate()
+					.getTime()));
 			pstupdate.setInt(5, t.getID());
 
 			done = pstupdate.executeUpdate() != 0;
@@ -117,6 +121,7 @@ public class UrlDAOImpl implements IWordDAO {
 
 		return done;
 	}
+
 	public boolean updateCategory(Url t) {
 		Connection conn = null;
 		boolean done = false;
@@ -125,11 +130,10 @@ public class UrlDAOImpl implements IWordDAO {
 			if (null == pstupdate) {
 				conn = JDBCUtil.getConnection();
 				pstupdate = conn.prepareStatement("update " + TABLE_NAME
-						+ " set cat_id=? "
-						+ "where url_id=?");
+						+ " set cat_id=? " + "where url_id=?");
 			}
 
-			//setPS(pstupdate, t);
+			// setPS(pstupdate, t);
 			pstupdate.setInt(1, t.getCategory());
 			pstupdate.setInt(2, t.getID());
 
@@ -143,6 +147,7 @@ public class UrlDAOImpl implements IWordDAO {
 
 		return done;
 	}
+
 	public boolean updatePagerankValue(Url t) {
 		Connection conn = null;
 		boolean done = false;
@@ -151,11 +156,10 @@ public class UrlDAOImpl implements IWordDAO {
 			if (null == pstupdate) {
 				conn = JDBCUtil.getConnection();
 				pstupdate = conn.prepareStatement("update " + TABLE_NAME
-						+ " set pagerank_value=?"
-						+ "where url_id=?");
+						+ " set pagerank_value=?" + "where url_id=?");
 			}
 
-			//setPS(pstupdate, t);
+			// setPS(pstupdate, t);
 			pstupdate.setDouble(1, t.getPagerankValue());
 			pstupdate.setInt(2, t.getID());
 
@@ -169,6 +173,7 @@ public class UrlDAOImpl implements IWordDAO {
 
 		return done;
 	}
+
 	@Override
 	public boolean delete(Url t) {
 		Connection conn = null;
@@ -199,7 +204,7 @@ public class UrlDAOImpl implements IWordDAO {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		//HashSet<Scene> result = new HashSet<Scene>();
+		// HashSet<Scene> result = new HashSet<Scene>();
 		List<Url> result = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from " + TABLE_NAME + " ");

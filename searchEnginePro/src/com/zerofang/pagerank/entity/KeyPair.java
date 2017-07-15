@@ -1,31 +1,33 @@
 package com.zerofang.pagerank.entity;
 
 public class KeyPair {
-	private int wordID;  
-    private int urlID;  
-    public KeyPair(int wordID, int urlID){  
-        this.wordID = wordID;  
-        this.urlID = urlID;  
-    }  
-    @Override      
-    public boolean equals(Object obj){  
-        if(this == obj)//ÅÐ¶ÏÊÇ·ñÊÇ±¾ÀàµÄÒ»¸öÒýÓÃ  
-            return true;  
-        if(obj == null)//  
-            return false;             
-        KeyPair pair = (KeyPair)obj;  
-        if(this.wordID != pair.wordID)  
-            return false;  
-        if(this.urlID != pair.urlID)  
-            return false;  
-        return true;  
-    }  
-    @Override
-    public int hashCode(){  
-        int result = 17;  
-        result = result * 31 + wordID;  
-        result = result * 31 + urlID;  
-        return result;  
-    } 
-}
+	private int wordID;
+	private int urlID;
 
+	public KeyPair(int wordID, int urlID) {
+		this.wordID = wordID;
+		this.urlID = urlID;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)// ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			return true;
+		if (obj == null)//
+			return false;
+		KeyPair pair = (KeyPair) obj;
+		if (this.wordID != pair.wordID)
+			return false;
+		if (this.urlID != pair.urlID)
+			return false;
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = result * 31 + wordID;
+		result = result * 31 + urlID;
+		return result;
+	}
+}

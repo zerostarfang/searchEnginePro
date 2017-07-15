@@ -1,31 +1,35 @@
-package com.app.backend.utils;
+package com.zerofang.backend;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 
+import com.app.backend.utils.Word;
+
 public class AssociatedItems {
-	
+
 	public static void main(String[] args) throws IOException {
-		if(args.length <= 0){
+		if (args.length <= 0) {
 			System.out.println("invalid input");
-		}else{
+		} else {
 			String[] str = args[0].split("\\|");
 			getAssociatedItems(str);
-		//	String[] test = new String[]{"a", "b"};
-		//	getAssociatedItems(test);
+			// String[] test = new String[]{"a", "b"};
+			// getAssociatedItems(test);
 		}
-		
+
 	}
-	
+
 	// return history items most associated with input words
 	// result is delimited by "|"
 	// instr represents the entire input string typed by the user
-	// words is a list of strings which represents the segmentation result of instr
-	public static void getAssociatedItems(String[] words) throws IOException{
+	// words is a list of strings which represents the segmentation result of
+	// instr
+	public static void getAssociatedItems(String[] words) throws IOException {
 		List<Word> wlist = new ArrayList();
 		wlist.clear();
-		BufferedReader input =  new BufferedReader(new FileReader("frequency.txt"));
+		BufferedReader input = new BufferedReader(new FileReader(
+				"frequency.txt"));
 		String buff = input.readLine();
 		// "sssss#xxx\n"
 		while (buff != null) {
@@ -36,7 +40,7 @@ public class AssociatedItems {
 			buff = input.readLine();
 		}
 		input.close();
-		input =  new BufferedReader(new FileReader("patterns.txt"));
+		input = new BufferedReader(new FileReader("patterns.txt"));
 		int[] score = new int[wlist.size()];
 		for (int i = 0; i < score.length; i++) {
 			score[i] = 0;
@@ -89,7 +93,8 @@ public class AssociatedItems {
 				}
 			}
 			if (score[k] > 0) {
-				System.out.print(wlist.get(k).getval() /*+ ":" + score[k]*/ + "|");
+				System.out.print(wlist.get(k).getval() /* + ":" + score[k] */
+						+ "|");
 			}
 			score[k] = 0;
 		}
