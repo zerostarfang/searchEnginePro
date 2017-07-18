@@ -29,7 +29,13 @@ public class Url implements Identifiable {
 		super();
 		this.ID = urlID;
 	}
-
+	
+	public Url(int urlID, String urlName) {
+		super();
+		this.ID = urlID;
+		this.urlName = urlName;
+	}
+	
 	public Url(int urlID, String urlName, double pagerankValue) {
 		super();
 		this.ID = urlID;

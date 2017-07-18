@@ -18,7 +18,7 @@ import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 
-public final class JavaPageRank {
+public final class PageRank {
 	private static final Pattern SPACES = Pattern.compile("\\s+");
 
 	static void showWarning() {

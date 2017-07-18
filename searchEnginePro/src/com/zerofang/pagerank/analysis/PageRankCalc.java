@@ -28,7 +28,7 @@ public class PageRankCalc {
 		String line;
 
 		while ((line = br.readLine()) != null) {
-			System.out.println(line);
+			//System.out.println(line);
 			String[] result = line.split(delim);
 			g.addEdge(result[0] + " " + result[1], Integer.parseInt(result[0]),
 					Integer.parseInt(result[1]));
